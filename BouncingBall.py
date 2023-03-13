@@ -72,7 +72,7 @@ def moveBall():
         else:
             yVel=0
 
-#if we press spacebar the edges will change from 300x300 to 175x175  
+
 def spacebar():
     global RIGHT_EDGE, LEFT_EDGE, BOTTOM_EDGE, TOP_EDGE
     if RIGHT_EDGE==300:
@@ -86,24 +86,9 @@ def spacebar():
         
     if TOP_EDGE==300:
         TOP_EDGE=175
-
-
-#was not able to from 175 to 300 but found a compromise to use the comma key that will still do the task 
-def spacebar2():
-    global RIGHT_EDGE, LEFT_EDGE, BOTTOM_EDGE, TOP_EDGE
-    if RIGHT_EDGE==175:
-        RIGHT_EDGE= 300
-    
-    if LEFT_EDGE==-175: 
-        LEFT_EDGE=-300
         
-    if BOTTOM_EDGE==-175:
-        BOTTOM_EDGE =-300
-        
-    if TOP_EDGE==175:
-        TOP_EDGE=300
-
-
+    print("space") 
+#
 
 
 #lists used to change color of the ball
@@ -135,9 +120,7 @@ screen.tracer(0) #turn off auto screen updates to make it faster
 
 while True:
     moveBall()
-    #changing from 400 to 175
-    turtle.onkey(spacebar, "space")
-    #changing from 175 to 300 
-    turtle.onkey(spacebar2, ",") 
+    turtle.onkey(spacebar, "space") 
     turtle.listen() 
     screen.update()
+
