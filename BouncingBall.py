@@ -66,6 +66,25 @@ def moveBall():
         ball.color(random.choice(colors1)) 
         ball.sety(y + yVel-5)
 
+
+def spacebar():
+    global RIGHT_EDGE, LEFT_EDGE, BOTTOM_EDGE, TOP_EDGE
+    if RIGHT_EDGE==300:
+        RIGHT_EDGE= 175
+        
+    if LEFT_EDGE==-300: 
+        LEFT_EDGE=-175
+        
+    if BOTTOM_EDGE==-300:
+        BOTTOM_EDGE =-175
+        
+    if TOP_EDGE==300:
+        TOP_EDGE=175
+        
+    print("space") 
+#
+
+
 #lists used to change color of the ball
 colors1 = ["chocolate", "skyblue", "yellow"]
 colors2 = ["brown","blue", "red"]
@@ -95,6 +114,8 @@ screen.tracer(0) #turn off auto screen updates to make it faster
 
 while True:
     moveBall()
+    turtle.onkey(spacebar, "space") 
+    turtle.listen() 
     screen.update()
    
 
