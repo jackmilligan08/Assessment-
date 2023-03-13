@@ -6,6 +6,7 @@ from turtle import *
 import random
 
 #Define constants
+#changed 400 to 300 to make it easier to test and see 
 RIGHT_EDGE= 300
 LEFT_EDGE = -300
 BOTTOM_EDGE = -300
@@ -26,7 +27,8 @@ def moveBall():
         
     y = ball.ycor()
     if yVel!=0: #if it's 0 we are not bouncing, we are rolling
-        yVel = yVel - GRAVITY   #only y is impacted by gravity
+        #changed gravity from - to + so now the ball goes up instead of down 
+        yVel = yVel + GRAVITY   #only y is impacted by gravity
         ball.sety(y + yVel)
     else:   # friction comes into play while rolling which impacts xVel
         if (xVel>0):  xVel = xVel-FRICTION
@@ -55,7 +57,6 @@ def moveBall():
     if (y <= BOTTOM_EDGE+5):
         yVel *= -1
         ball.color(random.choice(colors1)) 
-        yVel = yVel * DAMPING #damping effect
         if yVel>2:
             ball.sety(y + yVel+5)
         else:
@@ -63,8 +64,13 @@ def moveBall():
 
     if (y >= TOP_EDGE):
         yVel *= -1
-        ball.color(random.choice(colors1)) 
-        ball.sety(y + yVel-5)
+        yVel = yVel * DAMPING #damping effect
+        #changed damping to top edge
+        ball.color(random.choice(colors1))
+        if yVel!=0:
+            ball.sety(y + yVel-5)
+        else:
+            yVel=0
 
 
 def spacebar():
@@ -117,5 +123,5 @@ while True:
     turtle.onkey(spacebar, "space") 
     turtle.listen() 
     screen.update()
-   
+
 
