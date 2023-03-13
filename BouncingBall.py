@@ -3,12 +3,13 @@
 #import needed libraries   
 import turtle
 from turtle import *
+import random
 
 #Define constants
-RIGHT_EDGE= 400
-LEFT_EDGE = -400
-BOTTOM_EDGE = -400
-TOP_EDGE = 400
+RIGHT_EDGE= 300
+LEFT_EDGE = -300
+BOTTOM_EDGE = -300
+TOP_EDGE = 300
 
 GRAVITY = .1
 DAMPING = .8
@@ -37,18 +38,23 @@ def moveBall():
             exit()
 
     #Check for collisons and reverse the direction if so
+    #if the ball hits right edge or the left edge then it changes from a color in a list from "colors2".
+    #if the ball hits the top or bottom edge then it changes from a color in a list from "colors1". 
     if (x >= RIGHT_EDGE):
         xVel *= -1
+        ball.color(random.choice(colors2))
         if xVel!=0:
             ball.setx(x + xVel-5)
 
     if (x <= LEFT_EDGE):
         xVel *= -1
+        ball.color(random.choice(colors2))
         if xVel!=0:
             ball.setx(x + xVel+5)
    
     if (y <= BOTTOM_EDGE+5):
         yVel *= -1
+        ball.color(random.choice(colors1)) 
         yVel = yVel * DAMPING #damping effect
         if yVel>2:
             ball.sety(y + yVel+5)
@@ -57,13 +63,15 @@ def moveBall():
 
     if (y >= TOP_EDGE):
         yVel *= -1
+        ball.color(random.choice(colors1)) 
         ball.sety(y + yVel-5)
 
-    
+#lists used to change color of the ball
+colors1 = ["chocolate", "skyblue", "yellow"]
+colors2 = ["brown","blue", "red"]
 
 #Global variables
-screen = Screen()
-screen.title("My window")
+screen = Screen() 
 screen.bgcolor("green")
 
 ball = Turtle()
@@ -89,3 +97,4 @@ while True:
     moveBall()
     screen.update()
    
+
